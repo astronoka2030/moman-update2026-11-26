@@ -141,24 +141,132 @@ main {
   white-space: nowrap;
 }
 
-/* メンテナンス */
+/* メンテナンスカード */
 
 .maintenance {
-  padding: 18px;
-  border-left: 4px solid #c85c5c;
   background: var(--surface);
-  border-radius: var(--radius);
-  box-shadow: 0 3px 12px #24324406;
+  border: 1px solid #dce4ed;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px #24324409;
+}
+
+.maintenance-header {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 17px 20px;
+  background: linear-gradient(
+    120deg, #24394e, #36566e
+  );
+  color: #fff;
+}
+
+.maintenance-icon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  border: 1px solid #ffffff25;
+  background: #ffffff10;
+  border-radius: 11px;
+}
+
+.maintenance-icon svg {
+  width: 23px;
+  height: 23px;
+}
+
+.maintenance-label {
+  color: #b9cddd;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: .15em;
 }
 
 .maintenance h2 {
-  margin: 0 0 8px;
-  color: #b94e4e;
+  margin: 3px 0 0;
+  color: #fff;
   font-size: 17px;
+  font-weight: 700;
+  letter-spacing: .04em;
 }
 
-.maintenance p {
-  margin: 5px 0;
+.maintenance-body {
+  padding: 19px 20px 17px;
+}
+
+.maintenance-date {
+  color: #526174;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: .03em;
+}
+
+.maintenance-schedule {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 5px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--line);
+}
+
+.maintenance-time {
+  display: flex;
+  align-items: baseline;
+  gap: 9px;
+  color: #24394e;
+  font-size: clamp(25px, 7vw, 36px);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -.04em;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+.maintenance-separator {
+  color: #9aa9b8;
+  font-size: .65em;
+  font-weight: 400;
+}
+
+.maintenance-duration {
+  padding: 4px 10px;
+  background: #edf2f6;
+  color: #526c82;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.maintenance-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-top: 13px;
+  color: #526174;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.maintenance-note svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  margin-top: 3px;
+  color: #8293a5;
+}
+
+.maintenance-disclaimer {
+  margin: 5px 0 0 24px;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.8;
 }
 
 /* AI注釈 */
@@ -539,6 +647,18 @@ footer p {
 
   th, td {
     padding: 10px 8px;
+  }
+
+  .maintenance-header {
+    padding: 14px 16px;
+  }
+
+  .maintenance-body {
+    padding: 15px 16px;
+  }
+
+  .maintenance-time {
+    gap: 6px;
   }
 }
 
