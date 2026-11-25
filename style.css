@@ -671,3 +671,22 @@ footer p {
     transition: none !important;
   }
 }
+
+
+/* 原文ページへのリンク */
+.original-link {
+  display: inline-block;
+  margin-top: 18px;
+  padding: 10px 22px;
+  background: #ffffff;
+  color: #2c3e50;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 700;
+  transition: opacity 0.2s;
+}
+
+.original-link:hover {
+  opacity: 0.85;
+}
