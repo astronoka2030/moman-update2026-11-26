@@ -171,16 +171,91 @@ function renderCards(target, data) {
   `).join("");
 }
 
-function renderSummary(data) {
-  const maintenance = data.maintenance;
+/* メンテナンスカード */
 
+function renderMaintenance(maintenance) {
   $("maintenance").innerHTML = `
     <div class="maintenance">
-      <h2>定例メンテナンスのお知らせ</h2>
-      <p><strong>${format(maintenance.date)}</strong></p>
-      <p>${format(maintenance.note)}</p>
+
+      <div class="maintenance-header">
+
+        <div class="maintenance-icon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.6"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true">
+            <rect x="3" y="5" width="18" height="16" rx="2"/>
+            <path d="M16 3v4M8 3v4M3 10h18"/>
+            <path d="M12 13v3l2 1"/>
+          </svg>
+        </div>
+
+        <div>
+          <div class="maintenance-label">
+            SCHEDULED MAINTENANCE
+          </div>
+          <h2>定例メンテナンス</h2>
+        </div>
+
+      </div>
+
+      <div class="maintenance-body">
+
+        <div class="maintenance-date">
+          ${format(maintenance.date)}
+        </div>
+
+        <div class="maintenance-schedule">
+
+          <div class="maintenance-time">
+            <span>${format(maintenance.start)}</span>
+            <span class="maintenance-separator">—</span>
+            <span>${format(maintenance.end)}</span>
+          </div>
+
+          <span class="maintenance-duration">
+            ${format(maintenance.duration)}
+          </span>
+
+        </div>
+
+        <div class="maintenance-note">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M12 11v5"/>
+            <path d="M12 8h.01"/>
+          </svg>
+
+          <span>${format(maintenance.note)}</span>
+        </div>
+
+        <p class="maintenance-disclaimer">
+          ${format(maintenance.disclaimer)}
+        </p>
+
+      </div>
+
     </div>
   `;
+}
+
+/* AI要点まとめ */
+
+function renderSummary(data) {
+  renderMaintenance(data.maintenance);
 
   $("summary-content").innerHTML = `
     <details>
@@ -196,6 +271,8 @@ function renderSummary(data) {
     </details>
   `;
 }
+
+/* ナビゲーション */
 
 function setupNavigation() {
   const links = [
@@ -239,6 +316,8 @@ function setupNavigation() {
 
   update();
 }
+
+/* JSON読み込み */
 
 async function init() {
   const jobs = [
