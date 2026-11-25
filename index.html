@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -235,6 +236,17 @@ button:focus-visible {
   color: #805b22;
 }
 
+/* AI要約の注釈 */
+.ai-note {
+  display: block;
+  font-size: 11px;
+  font-weight: 400;
+  color: #737d89;
+  margin-top: 5px;
+  line-height: 1.5;
+  letter-spacing: .02em;
+}
+
 .tools {
   display: flex;
   justify-content: flex-end;
@@ -299,7 +311,15 @@ footer {
 
 <div id="summary">
 <details class="key">
-  <summary><span>アプデ要点まとめ</span></summary>
+  <summary>
+    <span>
+      アプデ要点まとめ
+      <small class="ai-note">
+        ✦ AIがアップデートの重要項目を抽出・要約
+      </small>
+    </span>
+  </summary>
+
   <div class="body">
 
     <h3>【兵書・陣形】</h3>
