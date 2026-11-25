@@ -1,630 +1,80 @@
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>モーマンタイム｜11月26日アップデート情報</title>
-<style>
-:root {
-  color-scheme: light;
-  --ink: #17283b;
-  --muted: #65758a;
-  --line: #e0e7ee;
-  --blue: #236b9a;
-}
-
-* { box-sizing: border-box; }
-
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 82px;
-}
-
-body {
-  margin: 0;
-  background: #f1f5f9;
-  color: var(--ink);
-  font-family: "Noto Sans JP", system-ui, sans-serif;
-  font-size: 15px;
-  line-height: 1.85;
-}
-
-nav {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  background: #fff;
-  display: flex;
-  justify-content: center;
-  gap: 6px;
-  padding: 10px 12px;
-  border-bottom: 1px solid var(--line);
-  box-shadow: 0 4px 16px #17283b09;
-}
-
-nav a {
-  color: #40546a;
-  border-radius: 9px;
-  padding: 8px 18px;
-  text-decoration: none;
-  font-size: 13px;
-  font-weight: 750;
-}
-
-nav a:hover,
-nav a.active {
-  background: #e8f1f8;
-  color: #185c8c;
-}
-
-main {
-  max-width: 760px;
-  margin: auto;
-  padding: 20px 16px 48px;
-}
-
-.hero {
-  background: linear-gradient(125deg, #15283e, #294b66);
-  color: white;
-  border-radius: 20px;
-  padding: 24px 22px;
-  margin-bottom: 16px;
-  position: relative;
-  overflow: hidden;
-}
-
-.hero::after {
-  content: "";
-  position: absolute;
-  width: 220px;
-  height: 220px;
-  border: 1px solid #ffffff20;
-  border-radius: 50%;
-  right: -80px;
-  top: -95px;
-  box-shadow: 0 0 0 25px #ffffff09,
-              0 0 0 50px #ffffff06;
-  pointer-events: none;
-}
-
-.eyebrow {
-  font-size: 10px;
-  letter-spacing: .2em;
-  color: #b9d6e9;
-  font-weight: 700;
-}
-
-.hero h1 {
-  font-size: clamp(24px, 6vw, 34px);
-  line-height: 1.4;
-  margin: 8px 0;
-}
-
-.hero p {
-  margin: 0;
-  color: #d1e1ec;
-  font-size: 13px;
-}
-
-.notice,
-details {
-  background: #fff;
-  border: 1px solid var(--line);
-  border-radius: 13px;
-  margin-bottom: 9px;
-  box-shadow: 0 2px 6px #17283b04;
-}
-
-.notice {
-  padding: 14px 16px;
-  border-left: 4px solid #d66b62;
-  margin-bottom: 16px;
-}
-
-.notice h3 {
-  font-size: 13px;
-  color: #ad4039;
-  margin: 0 0 4px;
-}
-
-.notice p {
-  font-weight: 700;
-  margin: 0;
-  font-size: 14px;
-}
-
-h2 {
-  font-size: 19px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin: 28px 0 10px;
-  letter-spacing: .02em;
-}
-
-h2::before {
-  content: "";
-  width: 4px;
-  height: 22px;
-  border-radius: 4px;
-  background: currentColor;
-}
-
-h2 small {
-  margin-left: auto;
-  font-size: 11px;
-  color: var(--muted);
-  font-weight: 500;
-}
-
-.add { color: #236b9a; }
-.adj { color: #76579d; }
-.fix { color: #327b68; }
-
-summary {
-  list-style: none;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 15px 16px;
-  font-weight: 700;
-  cursor: pointer;
-  line-height: 1.65;
-  min-height: 58px;
-}
-
-summary::-webkit-details-marker {
-  display: none;
-}
-
-summary span {
-  flex: 1;
-  min-width: 0;
-}
-
-summary::after {
-  content: "";
-  width: 9px;
-  height: 9px;
-  border-right: 2px solid #708399;
-  border-bottom: 2px solid #708399;
-  transform: rotate(45deg);
-  margin: 0 4px 5px 0;
-  flex-shrink: 0;
-  transition: transform .18s;
-}
-
-details[open] > summary::after {
-  transform: rotate(225deg);
-  margin-bottom: 0;
-}
-
-details[open] {
-  border-color: #a9c5d9;
-}
-
-summary:focus-visible,
-nav a:focus-visible,
-button:focus-visible {
-  outline: 2px solid #236b9a;
-  outline-offset: 2px;
-}
-
-.body {
-  padding: 4px 16px 16px;
-  border-top: 1px solid #edf1f5;
-}
-
-.body h3 {
-  font-size: 14px;
-  color: #236b9a;
-  margin: 16px 0 4px;
-}
-
-.body p {
-  margin: 7px 0 12px;
-  color: #34465a;
-}
-
-.key {
-  border-color: #e2c58b;
-  background: #fffdf7;
-}
-
-.key summary {
-  color: #805b22;
-}
-
-/* AI要約の注釈 */
-.ai-note {
-  display: block;
-  font-size: 11px;
-  font-weight: 400;
-  color: #737d89;
-  margin-top: 5px;
-  line-height: 1.5;
-  letter-spacing: .02em;
-}
-
-.tools {
-  display: flex;
-  justify-content: flex-end;
-  gap: 8px;
-  margin: 12px 0;
-}
-
-.tools button {
-  border: 1px solid var(--line);
-  background: #fff;
-  color: #52657a;
-  border-radius: 8px;
-  padding: 7px 12px;
-  font: inherit;
-  font-size: 12px;
-  cursor: pointer;
-}
-
-footer {
-  font-size: 12px;
-  color: var(--muted);
-  margin-top: 28px;
-  text-align: center;
-  border-top: 1px solid var(--line);
-  padding-top: 16px;
-}
-
-@media (max-width: 360px) {
-  main { padding: 14px 12px 36px; }
-  nav a { padding: 8px 13px; }
-  summary { padding: 13px; font-size: 14px; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  summary::after { transition: none; }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f0f3f8">
+  <title>モーマンタイム｜アップデート情報</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
 </head>
-
 <body>
 
-<nav>
+<header class="hero">
+  <div class="eyebrow">MOMAN TIME / UPDATE</div>
+  <h1>アップデート情報</h1>
+  <p>新機能・イベント・調整内容</p>
+</header>
+
+<nav class="navigation">
   <a href="#summary">要約</a>
-  <a href="#add">追加</a>
-  <a href="#adjust">調整</a>
-  <a href="#fix">修復</a>
+  <a href="#additions">追加</a>
+  <a href="#adjustments">調整</a>
+  <a href="#fixes">修復</a>
 </nav>
 
 <main>
+  <div id="maintenance"></div>
 
-<header class="hero">
-  <div class="eyebrow">MOMAN TIME / UPDATE NOTES</div>
-  <h1>アップデート情報</h1>
-  <p>2026.11.26　木曜日</p>
-</header>
-
-<div class="notice">
-  <h3>定例メンテナンスのお知らせ</h3>
-  <p>2026年11月26日(木) 16:00 ～（約2時間）</p>
-</div>
-
-<div id="summary">
-<details class="key">
-  <summary>
-    <span>
-      アプデ要点まとめ
-      <small class="ai-note">
-        ✦ AIがアップデートの重要項目を抽出・要約
-      </small>
-    </span>
-  </summary>
-
-  <div class="body">
-
-    <h3>【兵書・陣形】</h3>
-    <p>3種類の策略と陣形育成、助陣機能追加。</p>
-
-    <h3>【金陵決戦】</h3>
-    <p>3同盟による3日間のイベント。</p>
-
-    <h3>【九州制覇】</h3>
-    <p>24試合のポイント戦と上位16同盟のトーナメント。名士は大会中1回のみ出陣。</p>
-
-    <h3>【風華館・万商市場】</h3>
-    <p>装飾コレクションと新イベント。</p>
-
-    <h3>【機能改善】</h3>
-    <p>天工の最適化、聖獣・傑作の一括育成。</p>
-
-  </div>
-</details>
-</div>
-
-<div class="tools">
-  <button type="button" id="expand">すべて開く</button>
-  <button type="button" id="collapse">すべて閉じる</button>
-</div>
-
-<h2 id="add" class="add">
-  追加内容詳細
-  <small>9項目</small>
-</h2>
-
-<details>
-  <summary><span>一、新規追加兵書陣形システム</span></summary>
-  <div class="body">
-
-    <h3>【兵書策略】</h3>
-    <p>孫武兵勢・墨守非攻・鬼谷奇変の3種類。各陣営で有効にできるのは1種類。育成進捗は共有される。</p>
-
-    <h3>【兵書スキル】</h3>
-    <p>戦闘中スキル1個と共通の助陣スキル2個。</p>
-
-    <h3>【兵書育成】</h3>
-    <p>軍機巻でレベル上昇、厲兵玉印で昇階、心力丹で絵陣。昇階により属性やスキル、象嵌枠が強化・解放される。</p>
-
-    <h3>【陣形獲得】</h3>
-    <p>絵陣で白・緑・青の陣形を獲得。累計回数で絵陣レベルが上昇し、属性や獲得数が増加。</p>
-
-    <h3>【陣形合成】</h3>
-    <p>同品質2個を合成。成功で上位品質、失敗で育成素材を獲得。同品質の失敗で成功率が上昇し、成功でリセット。</p>
-
-    <h3>【陣形星昇級】</h3>
-    <p>品質は白→緑→青→紫→橙→赤。赤のみ星昇級可能。同じ赤陣形の重複は欠片に変換。</p>
-
-    <h3>【陣形装着】</h3>
-    <p>策略ごとに独立した枠があり、未選択の策略でも装着済み陣形の属性バフは有効。専属スキルは選択中の策略のみ有効。</p>
-
-  </div>
-</details>
-
-<details>
-  <summary><span>二、新たに名士の助陣機能を追加</span></summary>
-  <div class="body">
-
-    <h3>【助陣枠】</h3>
-    <p>角の陣形で助陣枠と属性バフを解放。主陣と助陣に同じ名士は配置不可。</p>
-
-    <h3>【属性】</h3>
-    <p>助陣名士は直接出場せず、収集品や契約の傑作を含む属性の一部が主陣に加算。専属収集品は収集品霊韻の装備数にも加算。</p>
-
-    <h3>【八方の援軍】</h3>
-    <p>主陣名士の行動後、一定確率で助陣名士の戦闘技が発動。神話スキルは発動しない。</p>
-
-  </div>
-</details>
-
-<details>
-  <summary><span>三、金陵決戦新規追加コンテンツ</span></summary>
-  <div class="body">
-
-    <h3>【参加資格】</h3>
-    <p>総繁栄度1〜27位は逐鹿グループ、28〜54位は争霸グループ。予告終了時に名簿と同盟を固定。3同盟で宋・漢・呉に分かれる。</p>
-
-    <h3>【日程】</h3>
-    <p>3日間開催。毎日対戦相手と勢力を更新。</p>
-    <p>
-      0:00〜9:30　勢力公布<br>
-      9:30　自動公布<br>
-      10:00〜20:00　版図争奪<br>
-      20:00〜22:00　中心決戦<br>
-      22:00　集計・休戦
+  <section id="summary" class="section summary">
+    <div class="section-heading">
+      <h2>アプデ要点まとめ</h2>
+      <span class="count">AI SUMMARY</span>
+    </div>
+    <p class="ai-note">
+      ✦ 公式公告をもとに、AIが重要と判断した
+      項目を自動抽出・整理しています。
     </p>
+    <div id="summary-content"></div>
+  </section>
 
-    <h3>【順位】</h3>
-    <p>豪傑章から開始し、試合順位に応じて上位の章へ昇格。3日間の集計ポイントで同盟順位、功績で個人順位を決定。</p>
+  <section id="additions" class="section additions">
+    <div class="section-heading">
+      <h2>追加内容</h2>
+      <span class="count">9項目</span>
+    </div>
+    <div id="additions-content"></div>
+  </section>
 
-    <h3>【城地】</h3>
-    <p>主城・都城・埠頭・雄関・州府・関所・郡県・村鎮の8種類。城地ごとにポイント、輸重、生産・バフが異なる。</p>
+  <section id="adjustments" class="section adjustments">
+    <div class="section-heading">
+      <h2>調整内容</h2>
+      <span class="count">8項目</span>
+    </div>
+    <div id="adjustments-content"></div>
+  </section>
 
-    <h3>【埠頭】</h3>
-    <p>20時から水路開放。20時以前の占領5分につき保護時間1分。</p>
-
-    <h3>【部隊】</h3>
-    <p>槍弓盾騎の4部隊を自動編成。名士育成後は手動で戦力同期。休戦中も予備兵募集。</p>
-
-    <h3>【士気・軍階】</h3>
-    <p>士気は毎日全回復。軍階は5段階で功績に応じて昇格。順位条件は30分ごとに評価。</p>
-
-    <h3>【城主】</h3>
-    <p>盟主・参謀官による任免が可能。管轄城地の防衛時に戦闘力10%バフと城池バフ2倍。</p>
-
-    <h3>【目標と収益】</h3>
-    <p>毎日5つの目標城地が更新。達成後の占領維持は不要。輸送は商店で交換でき、終了後も保持。</p>
-
-    <h3>【報酬】</h3>
-    <p>3日目22時終了、5分間の集計後に受取。残存兵士の功績変換は個人番付に加算されない。未受取の功績実績・番付報酬は再配布。</p>
-
-  </div>
-</details>
-
-<details>
-  <summary><span>四、九州制覇新規追加コンテンツ</span></summary>
-  <div class="body">
-
-    <h3>【基本ルール】</h3>
-    <p>同盟単位のクロスサーバーイベント。ポイント戦3日間・24試合、上位16同盟がトーナメントへ。トーナメントは4日間、毎日20時に1試合。</p>
-
-    <h3>【ポイント戦】</h3>
-    <p>14時から21時まで毎時1試合。対戦相手は開始時に決定済み。</p>
-
-    <h3>【戦力ルール】</h3>
-    <p>公示終了15分前に育成戦力を固定。知己・乗騎・聖獣・国策・外観・傑作の育成は固定後に反映されない。名士昇級・星昇級・神格・名士衣装は反映される。新名士は翌日0時に固定。</p>
-
-    <h3>【名士配置】</h3>
-    <p>当日の試合のみ配置可能。各戦闘1名、同じ名士は大会全体で1回のみ。実際に登場しなくても本戦開始後は休息状態。配置順が出撃順となり、盟主・参謀官が変更可能。</p>
-
-    <h3>【戦中作戦】</h3>
-    <p>4種類のうち各戦闘1種類まで。神兵降臨は追加名士1名が必要。ポイント戦では未発動でも消費、トーナメントでは未発動なら返還。</p>
-
-    <h3>【同盟軍心】</h3>
-    <p>試合ごとに個別計算。軍心値が高い側は全名士に実力10%バフ。同値なら双方バフなし。</p>
-
-    <h3>【戦闘について】</h3>
-    <p>1対1の車輪戦。双方同時に攻撃し、勝者は残り体力を引き継ぐ。5人連続撃破で退場。双方の名士が尽きた場合は軍心値、次に総繁栄度で判定。</p>
-
-    <h3>【報酬】</h3>
-    <p>戦報視聴で参戦報酬を受取。ポイント戦・トーナメント番付報酬は未受取なら再配布されるが、参戦報酬は再配布されない。</p>
-
-    <h3>【全員予想】</h3>
-    <p>対戦記録を保存し、各試合の厳選戦報10件を公開。昇格・勝利同盟の予想的中数に応じて報酬。予想報酬は再配布なし。</p>
-
-    <h3>【優勝記録】</h3>
-    <p>最終日20〜22時に優勝同盟の集合写真の位置選択。早い者勝ちで確定後変更不可。盟主は中央が初期位置で1回変更可能。未選択者は役職・繁栄度順に自動配置。記録保存といいね報酬あり。</p>
-
-  </div>
-</details>
-
-<details>
-  <summary><span>五、風華館新規追加</span></summary>
-  <div class="body">
-
-    <h3>【会場紹介】</h3>
-    <p>衣装・キャラクター外観・アイコンフレーム・談話吹き出しの4分館。装飾を自動収録。期限切れでも絵巻・共鳴進捗・風華玉は保持。</p>
-
-    <h3>【風華レベル】</h3>
-    <p>風華玉の累積でレベル上昇。レベル報酬やバッジデザインの昇級。</p>
-
-    <h3>【風華絵巻】</h3>
-    <p>装飾の解放・昇級で点灯し、風華玉を手動受取。重複獲得でも上限まで風華玉を獲得。指定進捗で宝箱解放。</p>
-
-    <h3>【風華共鳴】</h3>
-    <p>装飾の解放・昇級で共鳴中の装飾レベルが上昇。指定数とレベル条件を満たすと組合せを解放・強化し、属性バフを獲得。</p>
-
-  </div>
-</details>
-
-<details>
-  <summary><span>六、万商市場イベント新規追加</span></summary>
-  <div class="body">
-
-    <h3>【イベント説明】</h3>
-    <p>市場でポイントを獲得し、条件達成でアイテムやクーポンを獲得。</p>
-
-    <h3>【商市特典】</h3>
-    <p>期間中のログインで特典を受取。</p>
-
-    <h3>【商品仕入れ】</h3>
-    <p>毎日の商会注文で万商貨物票を獲得。東市・西市・南市・北市があり、商品が異なる。貨物票でランダムに仕入れを行い、特産品をポイントに換算。</p>
-
-    <h3>【百業パック】</h3>
-    <p>5日目から利用可能。獲得済みクーポンに対応。</p>
-
-  </div>
-</details>
-
-<details>
-  <summary><span>七、時代最強祝祭新規追加</span></summary>
-  <div class="body">
-    <p>新規追加。</p>
-  </div>
-</details>
-
-<details>
-  <summary><span>八、スマート位置指定機能追加</span></summary>
-  <div class="body">
-    <p>市場と聖君殿に入る際のスマート位置指定機能を追加。</p>
-  </div>
-</details>
-
-<details>
-  <summary><span>九、一括育成機能追加</span></summary>
-  <div class="body">
-    <p>聖獣と傑作の一括昇格・一括星昇級機能を追加。</p>
-  </div>
-</details>
-
-<h2 id="adjust" class="adj">
-  調整内容
-  <small>8項目</small>
-</h2>
-
-<details>
-  <summary><span>一、天工システム最適化</span></summary>
-  <div class="body">
-    <p>品質確率を表示。天機推演の自動昇格機能追加。一括研究結果の確認を改善。発明図鑑解放画面を最適化。天工商店に神話設計図ランダム箱追加。</p>
-  </div>
-</details>
-
-<details>
-  <summary><span>二〜八、その他の調整</span></summary>
-  <div class="body">
-    <p>経済系神話国策交代時のスキル表示改善。三国の覇者・赤壁の戦い・董卓討伐・官渡の戦いの最低兵士数調整。同盟対決画面、宅地の波乱のスキップ演出を改善。神格心魔の説明と数を最適化し大境地以外の心魔を削除。大賞祝儀袋の持続時間調整。一部イベントパック購入ルールを変更。</p>
-  </div>
-</details>
-
-<h2 id="fix" class="fix">
-  修復内容
-  <small>9項目</small>
-</h2>
-
-<details>
-  <summary><span>不具合修正一覧（全9項目）</span></summary>
-  <div class="body">
-
-    <p>1. 遠征：マップのルート接続の問題を修正。</p>
-
-    <p>2. 山海：公示期間の手札表示の問題を修正。</p>
-
-    <p>3. 山海：4体目の聖獣更新時に参賽名簿が空になる問題を修正。</p>
-
-    <p>4. 四海：編成期間2日目のパック入り口表示の問題を修正。</p>
-
-    <p>5. 遠征：Lv.29〜35の輸送部隊検索の問題を修正。</p>
-
-    <p>6. 星象：参宿三星解放条件の出典欠落の問題を修正。</p>
-
-    <p>7. 市場：人形が建築レベル表示を隠す問題を修正。</p>
-
-    <p>8. 収集品：宋太祖収集品の装備時のみ有効という説明の欠落を修正。</p>
-
-    <p>9. 調整：短画面機種で内容がすべて表示されない問題を修正。</p>
-
-  </div>
-</details>
-
-<footer>
-  ゲーム内告知に基づく要約版。<br>
-  詳細はゲーム内の公告をご確認ください。
-</footer>
-
+  <section id="fixes" class="section fixes">
+    <div class="section-heading">
+      <h2>修復内容</h2>
+      <span class="count">9項目</span>
+    </div>
+    <div id="fixes-content"></div>
+  </section>
 </main>
 
-<script>
-document.getElementById("expand").onclick = () => {
-  document.querySelectorAll("details").forEach(d => {
-    d.open = true;
-  });
-};
+<footer>
+  <p>MOMAN TIME UPDATE INFORMATION</p>
+  <small>
+    ゲーム内公告をもとに作成した非公式まとめです。
+    詳細は公式公告をご確認ください。
+  </small>
+</footer>
 
-document.getElementById("collapse").onclick = () => {
-  document.querySelectorAll("details").forEach(d => {
-    d.open = false;
-  });
-};
-
-const links = [...document.querySelectorAll("nav a")];
-
-function update() {
-  let current = links[0];
-
-  for (const a of links) {
-    const section = document.querySelector(a.hash);
-
-    if (section.getBoundingClientRect().top <= 100) {
-      current = a;
-    }
-  }
-
-  links.forEach(a => {
-    a.classList.toggle("active", a === current);
-  });
-}
-
-addEventListener("scroll", update, { passive: true });
-update();
-</script>
+<button id="back-top" aria-label="ページ上部へ">
+  ↑
+</button>
 
 </body>
 </html>
