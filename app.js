@@ -252,26 +252,6 @@ function renderMaintenance(maintenance) {
   `;
 }
 
-/* AI要点まとめ */
-
-function renderSummary(data) {
-  renderMaintenance(data.maintenance);
-
-  $("summary-content").innerHTML = `
-    <details>
-      <summary>重要な変更点を確認する</summary>
-      <div class="detail-body">
-        ${data.highlights.map(item => `
-          <div class="highlight">
-            <h3>${format(item.title)}</h3>
-            <p>${format(item.text)}</p>
-          </div>
-        `).join("")}
-      </div>
-    </details>
-  `;
-}
-
 /* ナビゲーション */
 
 function setupNavigation() {
@@ -323,8 +303,10 @@ async function init() {
   const jobs = [
     {
       file: "summary.json",
-      target: "summary-content",
-      render: renderSummary
+      target: "maintenance",
+      render: data => renderMaintenance(
+        data.maintenance
+      )
     },
     {
       file: "additions.json",
